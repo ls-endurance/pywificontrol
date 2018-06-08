@@ -1,2 +1,2 @@
-from wificontrol import WiFiControl
-from wificommon import WiFiControlError
+from .wificontrol import WiFiControl
+from .wificommon import WiFiControlError

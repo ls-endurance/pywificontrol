@@ -33,13 +33,13 @@
 # EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-from wificommon import WiFi
-from utils import CfgFileUpdater
-from utils import WpaSupplicantInterface, WpaSupplicantNetwork, WpaSupplicantBSS
-from utils import convert_to_wpas_network, convert_to_wificontrol_network, \
+from .wificommon import WiFi
+from .utils import CfgFileUpdater
+from .utils import WpaSupplicantInterface, WpaSupplicantNetwork, WpaSupplicantBSS
+from .utils import convert_to_wpas_network, convert_to_wificontrol_network, \
     create_security
-from utils import FileError
-from utils import ServiceError, InterfaceError, PropertyError
+from .utils import FileError
+from .utils import ServiceError, InterfaceError, PropertyError
 from threading import Thread, Event, Timer
 import time
 import sys
@@ -198,7 +198,7 @@ class WpaSupplicant(WiFi):
         return [], ""
 
     def is_dict_empty(self, dict):
-        for value in dict.values():
+        for value in list(dict.values()):
             if value:
                 return False
         return True

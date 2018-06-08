@@ -53,7 +53,7 @@ class NetworkTemplate(object):
 
     def __str__(self):
         network_parameters = list()
-        for key, value in self.network_parameters.items():
+        for key, value in list(self.network_parameters.items()):
             if key in self._strings:
                 network_parameters.append(self.string_template.format(key, value))
             else:
