@@ -12,10 +12,4 @@ setup(
     description='Python API to control WiFi connectivity',
     tests_require=['pytest', 'pytest-mock'],
     long_description=open('README.md').read(),
-    entry_points={
-        'console_scripts': [
-            'wifimonitord = wificontrol.wifimonitord:main',
-            'wifireconnectd = wificontrol.wifireconnectd:main'
-        ]
-    },
 )

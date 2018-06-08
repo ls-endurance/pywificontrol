@@ -108,44 +108,6 @@ All methods are blocking unless specified otherwise. Some, like `scan()`, might 
 * `WiFiControl().disconnect()` - disconnect from the current network
 
 
-##### WiFiMonitor daemon
-
-Add handlers to wpa_supplicant and hostapd D-Bus events. **Must be** run in a separate process. D-Bus does not work with Python threads. Tools directory has a script and service files used to watch for network status on Reach.
-
-#### Usage Example
-
-```
-import signal
-from wificontrol import WiFiMonitor, WiFiControl
-
-
-def main():
-
-    def handler(signum, frame):
-        wifi_monitor.shutdown()
-
-    def print_wifi_state():
-        print(WiFiControl().get_status())
-        wifi_monitor = WiFiMonitor()
-
-    wifi_monitor.register_callback(wifi_monitor.HOST_STATE, print_wifi_state)
-    wifi_monitor.register_callback(wifi_monitor.CLIENT_STATE, print_wifi_statete)
-    wifi_monitor.register_callback(wifi_monitor.OFF_STATE, print_wifi_statetate)
-    wifi_monitor.register_callback(wifi_monitor.SCAN_STATE, print_wifi_state)
-    wifi_monitor.register_callback(wifi_monitor.REVERT_EVENT, print_wifi_statetify)
-    wifi_monitor.register_callback(wifi_monitor.SUCCESS_EVENT, print_wifi_stateotify)
-
-    signal.signal(signal.SIGINT, handler)
-    signal.signal(signal.SIGTERM, handler)
-
-    wifi_monitor.run()
-
-
-if __name__ == '__main__':
-    main()
-
-```
-
 ##### Credits
 
 This package was written by [Ivan Sapozhkov](https://github.com/isapozhkov) and [Denis Chagin](https://github.com/merindorium). It is used in [Emlid](https://emlid.com)'s products, such as Reach and Reach RS.
