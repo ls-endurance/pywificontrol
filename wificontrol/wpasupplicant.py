@@ -57,10 +57,6 @@ class WpaSupplicant(WiFi):
         self.wpa_supplicant_path = wpas_config
         self.p2p_supplicant_path = p2p_config
 
-        if (b'bin/wpa_supplicant' not in self.execute_command(
-                "whereis wpa_supplicant")):
-            raise OSError('No WPA_SUPPLICANT service')
-
         self.wpa_supplicant_interface = WpaSupplicantInterface(self.interface)
         self.wpa_bss_manager = WpaSupplicantBSS()
         self.wpa_network_manager = WpaSupplicantNetwork()
