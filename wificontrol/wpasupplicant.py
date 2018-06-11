@@ -218,6 +218,8 @@ class WpaSupplicant(WiFi):
     def get_current_network_ssid(self):
         self.wpa_supplicant_interface.initialize()
         network = self.wpa_supplicant_interface.get_current_network()
+        if network in ["", "/", None]:
+            return None
         return self.wpa_network_manager.get_network_SSID(network)
 
     # Connection actions
