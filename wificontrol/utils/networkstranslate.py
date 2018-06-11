@@ -56,6 +56,7 @@ def create_security(proto, key_mgmt, group):
 
 
 def convert_to_wpas_network(network):
+    print("converting to wpas network: %s" % network)
     return dict(WpasNetworkConverter(network))
 
 
@@ -73,11 +74,13 @@ def convert_to_wificontrol_network(network, current_network):
 
 class WpasNetworkConverter(object):
     def __init__(self, network_dict):
+        def rawUtf8(s):
+            return "{}".format(s.encode('utf-8'))[2:-1]
 
         self.security = network_dict.get('security')
-        self.name = network_dict.get('ssid', '').encode('utf-8')
-        self.password = network_dict.get('password', '').encode('utf-8')
-        self.identity = network_dict.get('identity', '').encode('utf-8')
+        self.name = rawUtf8(network_dict.get('ssid', ''))
+        self.password = rawUtf8(network_dict.get('password', ''))
+        self.identity = rawUtf8(network_dict.get('identity', ''))
 
     def __iter__(self):
         if (self.security == 'open'):
