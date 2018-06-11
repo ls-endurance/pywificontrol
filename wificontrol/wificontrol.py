@@ -139,7 +139,7 @@ class WiFiControl(object):
 
     def start_connecting(self, network, callback=None, args=None, timeout=10):
         if callback is None:
-            callback = self.revert_on_connect_failure
+            callback = self.connect_callback
             args = None
         self.start_client_mode()
         self.wpasupplicant.start_connecting(network, callback, args, timeout)
@@ -160,9 +160,11 @@ class WiFiControl(object):
 
         return state
 
-    def revert_on_connect_failure(self, result):
-        if not result:
-            self.start_host_mode()
+    def connect_callback(self, result):
+        print("connect callback, result=%s" % result)
+#    def revert_on_connect_failure(self, result):
+#        if not result:
+#            self.start_host_mode()
 
     def reconnect(self, result, network):
         if not result:
