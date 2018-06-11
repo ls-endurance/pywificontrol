@@ -107,6 +107,12 @@ All methods are blocking unless specified otherwise. Some, like `scan()`, might 
 * `WiFiControl().stop_connecting()` - stop the connection thread
 * `WiFiControl().disconnect()` - disconnect from the current network
 
+###### Troubleshooting
+* `dbus.exceptions.DBusException: fi.w1.wpa_supplicant1.InterfaceUnknown: wpa_supplicant knows nothing about this interface.`
+ * wpa_supplicant must be started as a regular systemd service (Type=simple), not as a dbus service.
+ * wpa_supplicant has to be bound to the WiFi interface (e.g. wlan0) using `-i`.
+ * wpa_supplicant must be compiled with dbus introspection support (`CONFIG_CTRL_IFACE_DBUS_INTRO=y`) and started with dbus interface enabled (`-u`)
+
 
 ##### Credits
 
