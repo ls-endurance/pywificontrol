@@ -56,7 +56,6 @@ def create_security(proto, key_mgmt, group):
 
 
 def convert_to_wpas_network(network):
-    print("converting to wpas network: %s" % network)
     return dict(WpasNetworkConverter(network))
 
 
